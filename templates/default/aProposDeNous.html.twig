@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- Slider -->
+    <div class="slider-area">
+        <div class="block-slider block-slider4">
+            <ul class="" id="bxslider-home4">
+                {% set exp = [] %}
+                {% for carte in cartes %}
+                    {% if carte.expansion not in exp %}
+                        <li>
+                            <a href="{{ url('searchExpansion', {expansionName: carte.expansion | removeExpansionExtension}) }}">
+                                <img src="{{ asset('img/' ~ carte.expansion)}}" width="300" alt="Slide">
+                            </a>
+                        </li>
+                        {% set exp = exp|merge([carte.expansion]) %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Contenu principal statique de la page -->
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+
+            <div class="lorem">
+                Tiramisu bonbon bear claw carrot cake cheesecake jelly beans. Sweet roll tiramisu pudding marshmallow sweet sesame snaps. Donut sweet roll cupcake wafer chocolate bar. Tiramisu sweet cake fruitcake pudding carrot cake. I love donut ice cream macaroon sweet roll candy canes. I love dragée I love bonbon jelly bonbon cupcake powder. Candy canes candy canes chocolate tiramisu tootsie roll. Lemon drops dragée apple pie cake candy topping. Wafer topping gummies carrot cake I love shortbread. Candy canes cheesecake powder liquorice tart jujubes cupcake tiramisu. Brownie marshmallow wafer bear claw danish. Powder bonbon danish fruitcake jelly beans I love.
+                Pastry tootsie roll cotton candy jujubes gummi bears powder lollipop marshmallow. Donut I love jelly carrot cake cotton candy. Caramels jelly beans tiramisu ice cream tart. Cheesecake chupa chups pudding dessert pastry sesame snaps fruitcake sweet. I love dragée jelly halvah fruitcake topping fruitcake liquorice. Brownie chupa chups sweet danish biscuit donut cake cotton candy chocolate bar. Icing I love I love cheesecake cotton candy I love icing croissant. Muffin I love jelly dessert icing liquorice. Halvah pie gingerbread ice cream jujubes. Toffee cheesecake tart chocolate bar cotton candy dessert. Shortbread cookie I love I love dessert cheesecake bonbon gingerbread. I love I love dragée fruitcake candy canes candy canes tiramisu I love. Gummies pastry cake croissant sugar plum.
+                Marshmallow muffin shortbread soufflé cookie marshmallow. I love I love jujubes powder pudding lemon drops I love. Powder candy muffin sugar plum chocolate cake jelly beans sweet roll cheesecake toffee. Tart marzipan topping cupcake danish. Liquorice dragée bonbon candy canes cupcake. Dragée brownie I love apple pie macaroon icing tiramisu. Shortbread candy cake jujubes brownie cookie. Pie ice cream brownie tiramisu marzipan. I love dessert marshmallow toffee tart wafer tootsie roll. Donut jelly-o gingerbread powder marshmallow danish. I love candy canes cupcake marshmallow chupa chups sweet I love ice cream powder. Powder marzipan I love toffee chupa chups. Cake ice cream shortbread donut muffin lemon drops fruitcake. Apple pie jelly beans sesame snaps cookie tiramisu donut muffin.
+                Liquorice sesame snaps ice cream bear claw pastry. Pie caramels I love I love apple pie powder bonbon. Bonbon cupcake oat cake gummies cupcake fruitcake biscuit sesame snaps gummies. Toffee oat cake macaroon croissant sweet roll shortbread tart muffin. Jelly brownie caramels tiramisu jujubes I love toffee. Pie cotton candy jelly pie I love I love bear claw chupa chups. Jelly topping powder biscuit gummi bears. Sweet roll I love cupcake sesame snaps cheesecake apple pie marshmallow tiramisu sugar plum. Ice cream chocolate jelly-o ice cream cake cheesecake gummies. I love marzipan I love I love topping pastry biscuit biscuit. Halvah candy canes jelly fruitcake toffee cheesecake I love carrot cake. I love bonbon ice cream lollipop chocolate bar.
+                Jujubes I love dragée ice cream oat cake sweet chocolate. Muffin I love apple pie candy carrot cake sesame snaps liquorice I love. Biscuit marzipan apple pie candy powder fruitcake cookie cheesecake cotton candy. Gingerbread tootsie roll sesame snaps dragée icing jelly. Cake chocolate brownie shortbread cookie sesame snaps. Lollipop brownie cheesecake jujubes croissant dragée I love. Dragée lollipop dragée I love sugar plum liquorice pudding cookie I love. Lemon drops chupa chups liquorice apple pie croissant. Apple pie macaroon lemon drops gummies bear claw I love. Lollipop cheesecake lollipop bear claw sugar plum pie lemon drops gummies. Bonbon I love jelly-o sugar plum soufflé I love. Topping pastry cheesecake donut wafer sugar plum fruitcake danish. Macaroon fruitcake cake croissant ice cream cotton candy sweet roll. Dragée jujubes carrot cake chocolate cake cake.
+            </div>
+
+            <div>
+                <h1>Contact</h1>
+                <p>Email : adresse@mail.com</p>
+                <p>Téléphone : 04 44 44 44</p>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

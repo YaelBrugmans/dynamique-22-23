@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if app.user %}
+        <!-- contenu principal de la page -->
+        <div class="maincontent-area">
+            <div class="container">
+
+                <!-- si il y a une erreur, affiche un message d'alert -->
+                {% if message %}
+                    <div class="alert alert-message">{{ message }}</div>
+                {% endif %}
+
+                <!-- formulaire autocomplété du compte de l'utilisateur, update possible -->
+                <form method="post" action="{{ path('compte') }}">
+                    {{ form_start(userForm) }}
+                    <!-- pseudo -->
+                    <div class="form-group">
+                        {{ form_row(userForm.pseudo, {'attr': {'value': app.user.pseudo, 'class': 'form-control', 'autofocus': 'autofocus'}}) }}
+                    </div>
+                    <!-- email -->
+                    <div class="form-group">
+                        {{ form_row(userForm.email, {'attr': {'value': app.user.email, 'class': 'form-control', 'autocomplete': 'email'}}) }}
+                    </div>
+                    <!-- mot de passe (plainPassword) -->
+                    <div class="form-group">
+                        {{ form_row(userForm.plainPassword, {'value': userForm.plainPassword, 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    {{ form_rest(userForm) }}
+
+                    <!-- update du compte -->
+                    <div class="form-group">
+                        <button type="submit" name="updateUser" id="updateUser" value="updateUser">Modifier le compte</button>
+                    </div>
+                    <!-- suppression du compte -->
+                    <div class="form-group">
+                        <button type="submit" name="deleteUser" id="deleteUser" value="deleteUser">Supprimer le compte</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

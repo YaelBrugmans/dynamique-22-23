@@ -1,0 +1,287 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Slider -->
+    <div class="slider-area">
+        <div class="block-slider block-slider4">
+            <ul class="" id="bxslider-home4">
+                {% set exp = [] %}
+                {% for carte in cartes %}
+                    {% if carte.expansion not in exp %}
+                        <li>
+                            <a href="{{ url('searchExpansion', {expansionName: carte.expansion | removeExpansionExtension}) }}">
+                                <img src="{{ asset('img/' ~ carte.expansion)}}" width="300" alt="Slide">
+                            </a>
+                        </li>
+                        {% set exp = exp|merge([carte.expansion]) %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- contenu principal statique de la page -->
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+
+                <h1>Comment jouer</h1>
+
+                <p>Bienvenue dans Magic: The Gathering, le plus célèbre
+                    jeu de cartes à jouer et à collectionner au monde. Vous
+                    êtes sur le point de découvrir pourquoi des millions de
+                    joueurs dans le monde entier jouent à Magic : sa stratégie
+                    complexe, ses mondes fabuleux, ses personnages hauts en
+                    couleurs et sa communauté internationale.
+                </p>
+
+                <h2>Premiers
+                    pas</h2>
+
+                <p>
+                    Pour commencer la partie, mélangez
+                    votre deck, communément appelé votre
+                    bibliothèque. Piochez une main de sept
+                    cartes et vérifiez combien vous avez de
+                    terrains. Vous pouvez vérifier le type de
+                    la carte en regardant la ligne de texte
+                    située juste au-dessous de l'illustration.
+                    Pour cette première partie, si vous n'avez
+                    pas au moins deux cartes de terrain,
+                    remélangez votre deck (y compris votre
+                    ancienne main) et piochez une nouvelle
+                    main.
+                    Votre adversaire et vous commencez
+                    chacun avec 20 points de vie, et vous
+                    aurez chacun besoin d'un moyen de
+                    décompter votre total de points de vie
+                    (des dés ou un papier et un crayon, par
+                    exemple). Réduisez le total de points
+                    de vie de votre adversaire à 0 et vous
+                    gagnez la partie !
+                </p>
+
+                <h2>Types de carte</h2>
+
+                <h3>Terrains</h3>
+                <p>Les cartes de terrain sont à la base de tout deck de Magic réussi.
+                    Les terrains fournissent du mana, l'énergie magique dont vous avez
+                    besoin pour lancer toutes les autres cartes de votre deck. Vous ne
+                    pouvez jouer qu'un seul terrain à chacun de vos tours, pendant
+                    votre phase principale. Les terrains restent sur le champ de bataille
+                    devant vous. Vos terrains se dégagent (se réinitialisent) au début de
+                    chacun de vos tours afin que vous puissiez les réutiliser.
+                    Il y a cinq types de terrain de base, chacun correspondant à l'une
+                    des cinq couleurs de magie. Chaque couleur de magie a des forces
+                    et des capacités différentes. Vous apprendrez à connaître les
+                    couleurs à mesure que vous jouerez.
+                    Tous les terrains ne sont pas des terrains de base. Certains terrains
+                    non-base s'engagent pour générer plusieurs couleurs de mana,
+                    tandis que d'autres le font pour générer du mana incolore (o1, o 2,
+                    etc.) mais ont aussi des capacités uniques.
+                </p>
+
+                <h3>Sorts</h3>
+                <p>Toute carte qui n'est pas un terrain peut être lancée comme un sort. Certains types
+                    de sort sont mis sur le champ de bataille et deviennent des « permanents ». D'autres
+                    ont leur effet puis vont dans votre cimetière (tas de défausse).</p>
+
+                <h3>Créatures</h3>
+                <p>Les créatures sont des permanents qui représentent vos serviteurs. Pendant
+                    le combat, elles peuvent attaquer vos adversaires et vous défendre contre
+                    les attaques ennemies. Vous pouvez lancer des sorts de créature pendant
+                    votre phase principale.</p>
+
+                <h3>Artefacts et enchantements</h3>
+                <p>Les artefacts et les enchantements sont des
+                    permanents qui représentent des objets magiques et des
+                    manifestations magiques stables. La plupart des artefacts sont incolores.
+                    Autrement dit, ils ne requièrent pas de couleur de mana spécifique
+                    pour être lancés. Certains artefacts sont aussi des créatures. Vous
+                    pouvez lancer des sorts d'artefact et d'enchantement pendant votre
+                    phase principale.</p>
+
+                <h3>Rituels et éphémères</h3>
+                <p>Les sorts de rituel et d'éphémère représentent de puissantes incantations qui
+                    peuvent avoir une vaste gamme d'effets. Une fois leurs effets résolus, ces sorts
+                    sont mis dans votre cimetière. Vous ne pouvez lancer un rituel que pendant
+                    votre phase principale, en même temps que vos créatures et vos autres sorts
+                    de permanent. Vous pouvez lancer un éphémère pendant le tour de n'importe
+                    quel joueurs, pratiquement à tout moment . . . même en réponse à un autre
+                    sort !</p>
+
+                <h3>Planeswalkers</h3>
+                <p>
+                    Les cartes de planeswalker représentent des alliés que vous pouvez appeler pour combattre à vos côtés. Elles sont similaires aux artefacts, aux créatures et aux enchantements.
+                    
+                    Les cartes de planeswalker sont mélangées dans votre deck au début de la partie, comme toutes les autres cartes. Vous pouvez lancer une carte de planeswalker à chaque fois que vous pourriez lancer un rituel. Les planeswalkers sont des permanents. Par conséquent, quand un sort de planeswalker que vous contrôlez se résout, il arrive sur le champ de bataille sous votre contrôle.
+                    
+                    Chaque planeswalker a un sous-type. Par exemple, Kiora, la Déferlante indique « Planeswalker : Kiora » dans sa ligne de type, ce qui veut dire qu'elle a le sous-type « Kiora ». Si un joueur contrôle au moins deux planeswalkers qui ont le même sous-type, ce joueur en choisit un qu'il garde et met le reste au cimetière.
+                    
+                    La valeur indiquée dans le coin inférieur droit d'une carte de planeswalker est sa « loyauté ». Un planeswalker arrive sur le champ de bataille avec ce nombre de marqueurs « loyauté » sur lui, et si, à un moment donné, il se trouve avec zéro marqueur « loyauté », il est mis dans le cimetière de son propriétaire.
+
+                    Les planeswalkers peuvent être attaqués comme un autre joueur. Quand vous déclarez une créature attaquante, vous choisissez si elle attaque un adversaire ou un planeswalker que cet adversaire contrôle. Le joueur défenseur peut quand même déclarer des bloqueurs, même si un planeswalker est attaqué.
+
+                    Si un sort ou une capacité que vous contrôlez devait infliger des blessures à un adversaire, vous pouvez choisir qu'il inflige ces blessures à un planeswalker que cet adversaire contrôle à la place. Par exemple, vous ne pouvez pas cibler un planeswalker avec le Choc , mais vous pouvez faire qu'un Choc qui cible votre adversaire inflige 2 blessures à l'un de ses planeswalkers à la place du joueur ciblé quand il se résout. Vous ne pouvez pas diviser les blessures d'une même source entre un joueur et un planeswalker.
+
+                    À chaque fois que des blessures sont infligées à un planeswalker, qu'elles proviennent du combat, de sorts ou de capacités, autant de marqueurs
+                    « loyauté » lui sont retirés.
+                </p>
+
+                <h2>Lancer des sorts</h2>
+
+                <p>À l'exception des terrains, toutes les cartes ont
+                    un coût de mana dans le coin supérieur droit.
+                    Ce coût est composé de différents symboles qui
+                    vous indiquent quel type de mana vous devez
+                    dépenser pour lancer le sort.
+                    Vous devez payer du mana pour chacun de
+                    ces symboles afin de lancer le Dragon shivân.
+                    Le symbole o R signifie un mana rouge.
+                    Le symbole o 4 signifie quatre manas de
+                    n'importe quel type. Donc, vous devez payer
+                    deux manas rouges et quatre manas de votre
+                    choix pour payer ce coût.
+
+                    Quand vous voulez payer un coût de mana, engagez (faites pivoter à l'horizontale)
+                    les terrains nécessaires sur le champ de bataille. Ceci indique que vous avez
+                    utilisé ces terrains pour produire du mana. Les cartes engagées se dégagent au
+                    début de chacun de vos tours ; elles seront donc prêtes à une nouvelle utilisation.
+                    Vous pouvez engager deux montagnes, qui produisent du mana rouge, et quatre
+                    autres terrains pour lancer le Dragon shivân. Ces quatre terrains peuvent être des
+                    montagnes, des forêts ou toute autre combinaison de terrains.
+                </p>
+
+                <h2>Les éléments d'une carte</h2>
+
+                <p>Les sorts ont un coût de mana qui
+                    vous indique la quantité de mana dont
+                    vous avez besoin pour les lancer.
+                    Chaque extension de Magic a son
+                    propre symbole. La couleur du
+                    symbole vous indique la rareté de
+                    la carte. Il est noir pour les cartes
+                    courantes, argent pour les cartes
+                    inhabituelles, or pour les cartes
+                    rares et cuivre pour les cartes rares
+                    mythiques.
+                    Les capacités d'une carte
+                    apparaissent dans son encadré
+                    de texte. Certaines capacités
+                    sont accompagnées d'un texte de
+                    rappel entre parenthèses pour
+                    vous remémorer comment elles
+                    fonctionnent. Une carte peut aussi
+                    inclure un texte d'ambiance imprimé
+                    en italiques qui vous fait voyager
+                    dans le monde de Magic. Le texte
+                    d’ambiance n’a aucun effet sur le jeu.
+                    Les créatures ont deux chiffres
+                    dans le coin inférieur droit de leur
+                    carte. Le premier est la force, qui
+                    vous indique combien de blessures
+                    la créature inflige au combat. Celui
+                    de droite est l'endurance. Si une
+                    créature subit au moins autant de
+                    blessures pendant un seul tour, la
+                    créature est détruite et mise dans le
+                    cimetière (le tas de défausse) de son
+                    propriétaire.</p>
+                
+                    <h2>Combat</h2>
+
+                <p>Vous gagnez la partie si vous réduisez le total des points de vie de votre adversaire à 0. La méthode
+                    la plus courante consiste à attaquer votre adversaire avec des créatures pendant le combat.</p>
+
+                <h3>Attaquer et bloquer</h3>
+                <p>Pendant votre tour, vous décidez lesquelles de vos créatures (le cas échéant) vont attaquer. Vous
+                    ne pouvez pas attaquer avec une créature si elle est engagée ou si elle est arrivée sur le champ de
+                    bataille ce tour-ci. Vous avez une phase de combat au milieu de votre tour, et toutes les créatures avec
+                    lesquelles vous décidez d'attaquer attaquent en même temps.
+                    Une fois que vous avez décidé lesquelles de vos créatures attaquent, engagez-les. Vos créatures
+                    engagées, comme vos terrains engagés, se dégagent au début de votre prochain tour.
+                    La plupart du temps, vos créatures attaquent votre adversaire. Parfois, elles peuvent aussi attaquer des
+                    planeswalkers. Mais les créatures n'attaquent jamais d'autres créatures. Vous les envoyez simplement
+                    affronter votre adversaire et c'est lui qui décide de ce qui se passe ensuite.
+                    À présent, imaginez que vous vous trouviez à l'autre bout du champ de bataille. Votre adversaire
+                    vous a attaqué avec certaines de ses créatures. Si vous contrôlez des créatures dégagées, vous pouvez
+                    les utiliser pour bloquer. Bloquer ne fait pas qu'une créature devienne engagée. Chaque créature
+                    bloquante peut bloquer un attaquant. Vous pouvez aussi faire que plusieurs créatures bloquent le
+                    même attaquant. Dans ce cas, le joueur attaquant décide quelle quantité de blessures la créature
+                    attaquante inflige à chacun des bloqueurs dans l'ordre.</p>
+
+                <h3>Exemple de combat</h3>
+                <p>Dans les exemples de combat suivants, votre adversaire
+                    vous a attaqué avec un Géant fulminant (4/3) et un
+                    Fielleux à la torche (2/1). Votre seule créature dégagée est
+                    un Ours runegriffe (2/2). Que bloquerez-vous ?</p>
+
+                <h3>Option A : Vous ne bloquez pas</h3>
+                <p>Les créatures attaquantes non-bloquées infligent à
+                    l'adversaire un nombre de blessures égal à leur force.
+                    Dans ce cas, ces créatures vous infligeront un total de
+                    6 blessures, ce qui vous fera perdre 6 points de vie. Vous
+                    pouvez choisir de ne pas bloquer si votre total de points
+                    de vie est élevé et que vous souhaitez garder votre créature
+                    pour une contre-attaque.</p>
+
+                <h3>Option B : Bloquez le Géant fulminant</h3>
+                <p>Votre Ours runegriffe inflige 2 blessures au Géant
+                    fulminant. Le Géant a une endurance de 3, alors il
+                    survit. Les blessures guériront à la fin du tour. Le Géant
+                    fulminant inflige 4 blessures à l'Ours runegriffe (2 en
+                    endurance), qui est détruit (mis dans votre cimetière). Le
+                    Fielleux à la torche non-bloqué vous inflige 2 blessures.
+                    Vous n'avez détruit aucune créature de l'adversaire, mais
+                    vous pouvez bloquer de cette manière si votre total de
+                    points de vie est bas.</p>
+
+                <h3>Option C : Bloquez le Fielleux à la
+                    torche</h3>
+                <p>Votre Ours runegriffe inflige 2 blessures au Fielleux à la
+                    torche (1 en endurance) et le Fielleux à la torche inflige
+                    2 blessures à votre Ours runegriffe. Les deux créatures
+                    sont détruites. Le Géant fulminant non-bloqué vous
+                    inflige 4 blessures. Vous pouvez bloquer de cette manière
+                    si vous voulez détruire une des créatures de votre
+                    adversaire et que subir quelques blessures ne vous pose
+                    aucun problème.</p>
+
+                <h2>La réponse et la pile</h2>
+
+                <p>Quand vous lancez un sort, il ne se résout pas (ne fait pas
+                    effet) tout de suite. Il doit attendre sur la pile. Les joueurs,
+                    vous compris, ont la possibilité de lancer un éphémère ou
+                    d'activer une capacité en réponse. Si c'est le cas, cet éphémère
+                    ou cette capacité va sur la pile, au-dessus de ce qui est déjà en
+                    attente. Quand tous les joueurs décident de ne plus rien faire,
+                    le sort ou la capacité qui se trouve sur le dessus de la pile se
+                    résout.
+                    Par exemple, supposons que vous ayez un Ours runegriffe 2/2
+                    sur le champ de bataille. Vous avez une Croissance titanesque
+                    dans votre main et votre adversaire, une Frappe foudroyante.
+                    Si vous lancez la Croissance titanesque en premier, votre
+                    adversaire peut répondre en lançant la Frappe foudroyante. La
+                    Frappe foudroyante sera au-dessus de la Croissance titanesque
+                    sur la pile et, par conséquent, elle se résoudra d'abord. La
+                    Frappe foudroyante inflige 3 blessures à l'Ours runegriffe,
+                    ce qui suffit pour le détruire. L'Ours runegriffe est mis dans
+                    votre cimetière. Quand la Croissance titanesque essaiera de
+                    se résoudre, sa cible aura disparu. Par conséquent, elle n'aura
+                    aucun effet et sera mise au cimetière.
+                    D'un autre côté, si votre adversaire lance la Frappe
+                    foudroyante en premier, vous pouvez répondre avec la
+                    Croissance titanesque. La Croissance titanesque se résoudra
+                    en premier, transformant l'Ours runegriffe en une créature
+                    6/6. Puis la Frappe foudroyante se résoudra et lui infligera
+                    3 blessures, mais ce ne sera pas suffisant pour détruire cet ours
+                    soudain devenu énorme !</p>
+
+                <!-- lien vers le glossaire -->
+                <h3>Glossaire</h3>
+                <p>Cliquez ici pour lire le <a href="{{ path('glossaire') }}">glosaire.</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

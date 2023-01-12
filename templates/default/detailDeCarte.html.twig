@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- titre de la page -->
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Détails de votre carte</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- contenu principal de la page -->
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                    <div class="product-content-right">
+                        
+                        <div class="row">
+
+                            <!-- image de la carte affichée à gauche -->
+                            <div class="col-sm-6">
+                                <div class="product-images">
+                                    <div class="product-main-img">
+                                        <img src="{{ asset('img/' ~ carte.image)}}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- données à droite -->
+                            <div class="col-sm-6">
+                                <div class="product-inner">
+
+                                    <!-- nom de la carte -->
+                                    <h2 class="product-name">{{ carte.nom }}</h2>
+
+                                    <!-- bouton d'ajout à la liste de souhaits -->
+                                    <form action="" class="cart">
+                                        <button class="add_to_cart_button" {% if app.user %} type="submit" href="{{ url('addListeDeSouhaits', {id: carte.id}) }}" {% else %} href="{{ path('login', ['login']) }}" {% endif %}>Ajouter à la collection</button>
+                                    </form>
+
+                                    <!-- lien pour le moteur de recherche affichant des résultats pour l'expansion -->
+                                    <div class="product-inner-category">
+                                        <p>Expansion: <a href="{{ url('searchExpansion', {expansionName: carte.expansion | removeExpansionExtension}) }}">{{ carte.expansion }}</a> </p>
+                                    </div>
+
+                                    <!-- panneau d'informations de la carte -->
+                                    <div role="tabpanel">
+
+                                        <!-- navigation du panneau -->
+                                        <ul class="product-tab" role="tablist">
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
+                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Commentaires</a></li>
+                                        </ul>
+
+                                        <div class="tab-content">
+                                            <!-- données de la carte -->
+                                            <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                                <h2>Nom</h2>
+                                                <p>{{ carte.nom }}</p>
+                                                <h2>Description</h2>
+                                                <p>{{ carte.description }}</p>
+                                                <h2>Expansion</h2>
+                                                <p>{{ carte.Expansion | removeExpansionExtension}}</p>
+                                                <h2>Couleur</h2>
+                                                <p>{{ carte.couleur }}</p>
+                                                <h2>Coût de la carte</h2>
+                                                <p>{{ carte.coutCarte }}</p>
+                                                <h2>Artiste</h2>
+                                                <p>{{ carte.artiste }}</p>
+                                                <h2>Atk / Def</h2>
+                                                <p>{{ carte.atkDef }}</p>
+                                                <h2>Prix sur le marché</h2>
+                                                <p>{{ carte.prix | number_format(2, ',', ' ') }} €</p>
+                                            </div>
+
+                                            <!-- panneau de commentaires -->
+                                            <div role="tabpanel" class="tab-pane fade" id="profile">
+
+                                                <h2>Commentaires</h2>
+                                                <!-- affiche les commentaires -->
+                                                <div>
+                                                    {% for commentaire in carte.commentaire %}
+                                                        <br><div>{{ commentaire.user.pseudo }}</div>
+                                                            <div>{{ commentaire.dateCommentaire | date("d/m/Y H:i:s") }}</div>
+                                                        <br><div>{{ commentaire.contenu }}</div>
+                                                        <!-- si l'utilisateur est un admin ou le propriétaire du commentaire, il peut supprimer ce dernier -->
+                                                        {% if is_granted('ROLE_ADMIN') or (app.user != null and app.user.userIdentifier == commentaire.user.userIdentifier) %}
+                                                            <div><button type="submit" name="deleteCommentaire" id="{{ commentaire.id }}" value="deleteCommentaire" onclick="deleteButton({{ commentaire.id }})" class="delete-button">Supprimer le commentaire</button></div>
+                                                        {% endif %}
+                                                        <hr>
+                                                    {% endfor %}
+                                                </div>
+
+                                                <!-- formulaire pour déposer un commentaire -->
+                                                <h3>Déposez un commentaire !</h3>
+                                                <form class="submit-review"  method="post" action="{{ url('detailDeCarte', {id: carte.id}) }}">
+                                                    {% if app.user %}
+                                                        {{ form_start(commentaireForm, {attr: {class: 'commentaire-form'}}) }}
+                                                        {{ form_rest(commentaireForm) }}
+                                                        {% else %}
+                                                            <p><div>Pour déposer un commentaire, veuillez vous <a href="{{ path('login') }}">inscrire</a> ou vous <a href="{{ path('login') }}">connecter</a></div></p>
+                                                    {% endif %}
+                                                </form>
+
+                                                <!-- si l'utilisateur est un admin, il peut modifier ou supprimer la page -->
+                                                {% if app.user and app.user.roles[0] == 'ROLE_ADMIN' %}
+                                                    </div>
+                                                        <button><a href="{{ path('carteFormUpdate', {id: carte.id}) }}">Modifier la carte</a></button>
+                                                        <button><a href="{{ path('deleteCarte', {id: carte.id}) }}">Supprimer la carte</a></button>
+                                                    </div>
+                                                {% endif %}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- script lié au bouton de suppression de commentaire -->
+    <script>
+        function deleteButton(idComm) {
+            let url = '/deleteCommentaire/' + idComm;
+            url = url.replace("id", this.value);
+            window.location.href = url;
+        }
+    </script>
+
+{% endblock %}

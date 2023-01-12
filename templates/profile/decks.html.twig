@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- contenu principal de la page -->
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+
+            <!-- titre de la page -->
+            <h2 class="section-title">Mes decks</h2>
+
+            <!-- variables pour l'affichage en ligne des decks -->
+            {% set a = 5 %}
+            {% set i = 1 %}
+            {% set c = 6 %}
+
+            {% for deck in decks %}
+
+                <!-- une nouvelle "row" se forme en première instance et toutes les 5 decks -->
+                {% if i == c or i == 1 %}
+                    <div class="row">
+                    <div class="product-padding-top">
+                    {% set c = a + 1 %}
+                {% endif %}
+
+                {% if deck is not empty %}
+                    <!-- deck affichée -->
+                    <div class="col-1-5 {% if i == a or i == 1 %}last{% endif %}">
+                        <div class="single-product">
+                            <!-- image de la première carte du deck -->
+                            <img src="{% for carte in deck.carte %}{{ asset('img/' ~ carte[0].image)}}{% endfor %}" width="300px" height="100px" alt="carte deck"/>
+                        </div>
+                        <!-- numérotation et lien du deck -->
+                        <h3><a {% if app.user %} href="{{ url('deck', {id: deck.id}) }}" {% else %} href="{{ path('login', ['login']) }}" {% endif %}>Mon deck : {{ i }}</a></h3>
+                    </div>
+                {% endif %}
+
+                <!-- ferme la "row" si 5 decks sont affichés ou si c'est le dernier -->
+                {% if i == a or i == decks | length %}
+                    {% set a = a + 5 %}
+                    </div>
+                    </div>
+                {% endif %}
+
+                {% set i = i + 1 %}
+            {% endfor %}
+
+            <!-- lien pour ajouter un deck -->
+            <p>
+                <a {% if app.user %} href="{{ url('addDeck') }}" {% else %} href="{{ path('login', ['login']) }}" {% endif %} class="add-deck-link">+</a>
+            </p>
+
+        </div>
+    </div>
+{% endblock %}

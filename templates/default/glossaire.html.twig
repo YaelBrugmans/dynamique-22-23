@@ -1,0 +1,296 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <h2>Glossaire</h2>
+                <p><a href="{{ path('commentJouer') }}">Comment jouer ?</a></p>
+                <p>
+                    <b><i>T</i></b> — Ce symbole signifie « engagez cette carte ».
+                Il apparaît uniquement comme coût pour activer
+                une capacité.<br>
+                    <b><i>+1/+1</i></b> — Un bonus appliqué à une créature qui
+                ajoute +1 à sa force et +1 à son endurance. Les
+                chiffres peuvent avoir n'importe quelle valeur,
+                même négative.<br>
+                </p>
+                <p>
+                    <b><i>battre (se)</i></b> — Quand deux créatures se battent,
+                chacune inflige un nombre de blessures égal à
+                sa force à l'autre, à ne pas confondre avec des
+                créatures qui infligent des blessures au combat.<br>
+                    <b><i>blessures</i></b> — Les créatures infligent un nombre
+                de blessures égal à leur force pendant le combat.
+                Les sorts peuvent aussi infliger des blessures
+                aux créatures et aux joueurs. Les blessures
+                infligées à un joueur lui font perdre autant de
+                points de vie. Les créatures qui subissent un
+                nombre de blessures supérieur ou égal à leur
+                endurance pendant le même tour sont détruites.
+                Les créatures blessées sur le champ de bataille
+                guérissent à la fin de chaque tour.<br>
+                </p>
+                <p>
+                    <b><i>célérité</i></b> — Une créature avec la célérité peut
+                attaquer et vous pouvez activer ses capacités o T
+                dès qu'elle arrive sous votre contrôle.<br>
+                    <b><i>cible, ciblé</i></b> — Si un sort contient les mots
+                « cible » ou « ciblé », vous choisissez ce que le sort
+                affecte lorsque vous le lancez. La même chose est
+                vraie pour les capacités que vous activez.<br>
+                    <b><i>contact mortel</i></b> — Une créature qui subit des
+                blessures d'une créature avec le contact mortel
+                est détruite.<br>
+                    <b><i>contrecarrer un sort</i></b> — Si une carte contrecarre
+                un sort, vous pouvez la lancer en réponse à un sort
+                que votre adversaire est en train de lancer. Le sort
+                contrecarré n'a pas d'effet et il est mis au cimetière.<br>
+                    <b><i>contrôler</i></b> — Vous contrôlez les créatures et les
+                autres permanents que vous avez sur le champ
+                de bataille, à moins que l'adversaire n'utilise un
+                sort ou une capacité pour acquérir le contrôle
+                d'un de vos permanents. Dans ce cas, il peut
+                l'utiliser et vous ne le pouvez pas. Quand il
+                quitte le champ de bataille ou que la partie se
+                termine, il vous est rendu.<br>
+                </p>
+                <p>
+                    <b><i>défense talismanique</i></b> — Une créature avec la
+                défense talismanique ne peut pas être la cible
+                de sorts ou de capacités que vos adversaires
+                contrôlent, y compris les sorts d'aura. Vos sorts
+                et vos capacités peuvent toujours la cibler.<br>
+                    <b><i>défenseur</i></b> — Une créature avec le défenseur ne
+                peut pas attaquer.<br>
+                    <b><i>dégager</i></b> — Dégagez une carte engagée en la
+                redressant à la verticale. Quand vous dégagez vos
+                cartes au début de votre tour, cela signifie que
+                vous pouvez les utiliser (les engager) à nouveau.<br>
+                    <b><i>détruire</i></b> — Un permanent qui est détruit est
+                mis au cimetière. Les créatures qui subissent un
+                nombre de blessures supérieur ou égal à leur
+                endurance pendant le même tour sont détruites.
+                Les sorts et les capacités peuvent aussi détruire
+                les permanents.<br>
+                    <b><i>double initiative</i></b> — Une créature avec la double
+                initiative inflige des blessures deux fois à chaque
+                combat : une première fois avant les créatures
+                sans l'initiative ou la double initiative, et une
+                deuxième fois quand les créatures infligent des
+                blessures normalement.<br>
+                </p>
+                <p>
+                    <b><i>enchanter</i></b> — Une aura est un enchantement
+                qui enchante (s'attache à) une autre carte sur
+                le champ de bataille. Par exemple, vous pouvez
+                lancer une aura avec « enchanter : créature »
+                pour l'attacher à la créature de votre choix sur
+                le champ de bataille. Si cette créature quitte le
+                champ de bataille, l'aura est mise au cimetière.<br>
+                    <b><i>engager</i></b> — Pour engager une carte, faites-la
+                pivoter à angle droit sur le côté. Vous le faites
+                quand vous utilisez un terrain pour générer du
+                mana, quand vous attaquez avec une créature,
+                ou quand vous activez une capacité qui a le
+                symbole o T dans son coût. Une fois engagé, un
+                permanent ne peut plus l’être à nouveau tant
+                qu’il n’a pas été dégagé. Au début de chacun de
+                vos tours, vous dégagez vos cartes engagées de
+                manière à pouvoir les utiliser à nouveau.<br>
+                    <b><i>équipement</i></b> — Si vous avez une carte
+                d'équipement sur le champ de bataille, vous
+                pouvez payer son coût d'équipement pour
+                l'attacher à une de vos créatures sur le
+                champ de bataille. Si la créature équipée quitte
+                le champ de bataille, la carte d'équipement y
+                reste.<br>
+                    <b><i>exiler</i></b> — Si une capacité exile une carte, celle-ci
+                est retirée du champ de bataille et mise de côté.
+                Une carte exilée n'est pas un permanent (parce
+                qu'elle n'est pas sur le champ de bataille) et elle
+                n'est pas au cimetière. Une carte reste en exil
+                jusqu'à la fin de la partie ou jusqu'à ce qu'elle soit
+                déplacée dans une zone de jeu différente.<br>
+                </p>
+                <p>
+                    <b><i>flash</i></b> — Vous pouvez lancer un sort avec le
+                flash à tout moment où vous pourriez lancer un
+                éphémère, même en réponse à d'autres sorts.<br>
+                </p>
+                <p>
+                    <b><i>indestructible</i></b> — Un permanent indestructible
+                ne peut pas être détruit par les blessures ou
+                les effets qui indiquent « détruisez ». Il peut
+                toujours être sacrifié ou exilé. Si un effet réduit
+                l'endurance d'une créature indestructible à 0 ou
+                moins, elle est toujours mise dans le cimetière
+                de son propriétaire.<br>
+                    <b><i>initiative</i></b> — Une créature avec l’initiative inflige
+                ses blessures de combat avant les créatures qui
+                n'ont pas l'initiative ou la double initiative.<br>
+                    <b><i>intimidation</i></b> — Une créature avec l'intimidation
+                ne peut pas être bloquée excepté par des
+                créatures-artefacts et/ou des créatures qui
+                partagent une couleur avec elle.<br>
+                </p>
+                <p>
+                    <b><i>jeton</i></b> — Certaines cartes créent des créatures-
+                jetons. Vous pouvez utiliser des cartes de jeton des
+                boosters, des perles de verre, des dés ou ce que
+                vous avez à votre disposition pour les représenter.<br>
+                </p>
+                <p>
+                    <b><i>lancer</i></b> — Vous lancez un sort en payant son
+                coût de mana et en le mettant sur la pile. Voir
+                « Lancer des sorts » à la page 6.<br>
+                    <b><i>lien de vie</i></b> — Si une créature avec le lien de
+                vie inflige des blessures, son contrôleur gagne
+                autant de points de vie.<br>
+                </p>
+                <p>
+                    <b><i>mana</i></b> — C'est l'énergie que vous puisez de vos
+                terrains et que vous utilisez pour lancer vos
+                sorts. Le mana peut être blanc (oW), bleu (oU),
+                noir (oB), rouge (oR), vert (oG) et parfois même
+                incolore (o1).<br>
+                    <b><i>marqueur sur une carte</i></b> — Parfois, des
+                marqueurs sont mis sur une carte pour assurer
+                le suivi d'un effet. Beaucoup d'entre eux sont
+                des marqueurs +1/+1 qui donnent chacun à une
+                créature +1 en force et +1 en endurance. Vous
+                pouvez utiliser n'importe quel petit objet pour
+                représenter des marqueurs.<br>
+                    <b><i>mourir</i></b> — Une autre façon de dire qu'une
+                créature a été mise dans un cimetière depuis le
+                champ de bataille.<br>
+                    <b><i>mulligan</i></b> — Au début de la partie, si votre main
+                ne vous convient pas, vous pouvez déclarer un
+                mulligan. Mélangez votre main à votre deck
+                et piochez une nouvelle main contenant une
+                carte de moins. Vous pouvez déclarer autant de
+                mulligans que vous le voulez, mais votre main
+                de départ rétrécit à chaque fois. Souvent, les
+                joueurs déclarent des mulligans parce qu'ils n'ont
+                pas suffisamment de cartes de terrain, ou parce
+                qu'ils ont trop de terrains et pas assez de sorts.<br>
+                </p>
+                <p>
+                    <b><i>permanent</i></b> — Les terrains, les créatures, les
+                artefacts, les enchantements et les planeswalkers
+                sont des permanents. Ils arrivent sur le champ
+                de bataille après que vous les avez lancés. Les
+                créatures-jetons sont aussi des permanents.
+                Les éphémères et les rituels ne sont pas des
+                permanents. Ils sont envoyés au cimetière une
+                fois qu’ils ont été résolus.<br>
+                    <b><i>piétinement</i></b> — Si une créature avec le
+                piétinement devait infliger suffisamment de
+                blessures à ses bloqueurs pour les détruire, vous
+                pouvez faire qu'elle inflige le reste de ses blessures
+                au joueur ou au planeswalker qu'elle attaque.<br>
+                    <b><i>piocher une carte</i></b> — Pour piocher une carte,
+                prenez la carte du dessus de votre bibliothèque
+                et mettez-la dans votre main.<br>
+                    <b><i>portée</i></b> — Une créature avec la portée peut bloquer
+                les créatures avec le vol (et les créatures sans le vol).
+                prochaine fois, prochaines blessures — Parfois,
+                une capacité fait référence à « la prochaine fois »
+                qu'il se passe quelque chose ou aux « prochaines
+                blessures » qu'une créature ou un joueur subit.
+                Rappelez-vous qu'un éphémère ou une capacité
+                utilisée en réponse à autre chose fait effet en
+                premier.<br>
+                    <b><i>protection</i></b> — Une créature avec la protection
+                contre une couleur ne peut pas être bloquée,
+                subir des blessures, être enchantée ou ciblée par
+                quoi que ce soit de cette couleur.<br>
+                </p>
+                <p>
+                    <b><i>régénérer</i></b> — Quand vous régénérez une créature,
+                vous la sauvez de la destruction. Au lieu d'être
+                détruite, la créature est engagée, puis elle est
+                retirée du combat (le cas échéant) et toutes ses
+                blessures sont guéries.<br>
+                    <b><i>réserve (de mana)</i></b> — C'est l'endroit où le mana
+                est entreposé après avoir engagé vos terrains et
+                avant de le dépenser. Certaines capacités vous
+                indiquent d'ajouter du mana à votre réserve. Ces
+                capacités vous donnent du mana identique à celui
+                que vous obtenez en engageant des terrains. Le
+                mana ne peut pas être conservé d'un tour à l'autre.
+                </p>
+                <p>
+                    <b><i>sacrifice, sacrifier</b></i> — Il arrive qu'une carte vous
+                indique de sacrifier une créature ou un autre
+                permanent. Pour sacrifier un permanent, vous le
+                déplacez du champ de bataille à votre cimetière.
+                Vous ne pouvez ni le régénérer, ni le sauver d'une
+                autre manière. Vous ne pouvez sacrifier que vos
+                propres permanents.<br>
+                    <b><i>défausser (se)</i></b> — Pour se défausser d'une carte,
+                choisissez une carte dans votre main et mettez-
+                la dans votre cimetière.<br>
+                </p>
+                <p>
+                    <b><i>vigilance</i></b> — Une créature avec la vigilance
+                ne s'engage pas pour attaquer. (Cependant,
+                la vigilance ne permet pas à une créature
+                d'attaquer si elle est engagée ou arrivée sur le
+                champ de bataille ce tour-ci.)<br>
+                </p>
+                <p>
+                    <b><i>vol</i></b> — Une créature avec le vol peut uniquement
+                être bloquée par d'autres créatures avec le vol et
+                des créatures avec la portée.<br>
+                </p>
+                <p>
+                    <b><i>X, o X</i></b> — Certains sorts et capacités ont des
+                effets qui changent selon la quantité de mana
+                que vous utilisez pour les payer. Par exemple,
+                le Rayon de chaleur est un sort d'éphémère qui
+                coûte o XoR et inflige X blessures. Si
+                vous avez payé o 3oR pour le lancer,
+                il inflige 3 blessures. Si vous avez
+                payé o 6oR pour le lancer, il inflige
+                6 blessures.
+                </p>
+                <hr>
+                <h2>Comment se déroule un tour dans Magic ?</h2>
+                <p><b><i>Phase de début</i></b><br>
+                    ∙ <i>Étape de dégagement</i>—Redressez à la verticale toutes vos cartes
+                    engagées.<br>
+                    ∙ <i>Étape d’entretien</i><br>
+                    ∙ <i>Étape de pioche</i>—Piochez une carte dans votre bibliothèque (deck).<br><br>
+                    <b><i>Phase principale</i></b><br>
+                    Vous pouvez jouer un terrain de votre main en le mettant sur le champ
+                    de bataille (table). Vous pouvez lancer des créatures, des rituels et
+                    d'autres sorts si vous pouvez en payer le coût.<br><br>
+                    <b><i>Phase de combat</i></b><br>
+                    ∙ <i>Étape de début de combat</i><br>
+                    ∙ <i>Étape de déclaration des attaquants</i>—Engagez chaque créature avec
+                    laquelle vous voulez attaquer votre adversaire. (Une créature ne peut
+                    pas attaquer au tour où elle a été lancée, à moins qu'elle ait la célérité.)<br>
+                    ∙ <i>Étape de déclaration des bloqueurs</i>—Chaque créature dégagée
+                    défenseuse ne peut bloquer qu'un seul attaquant. Les créatures ne
+                    sont pas obligées de bloquer.<br>
+                    ∙ <i>Étape d’attribution des blessures de combat</i>—Les créatures
+                    bloqueuses et les attaquants qu'elles bloquent s'infligent mutuellement
+                    un nombre de blessures égal à leur force, le premier chiffre indiqué
+                    dans le coin inférieur droit de la carte. Si une créature subit un
+                    nombre de blessures au moins égal au deuxième chiffre, l'endurance,
+                    elle est détruite. Les attaquants non-bloqués infligent des blessures à
+                    votre adversaire qui perd autant de points de vie.<br>
+                    ∙ <b>Étape de fin de combat</b><br><br>
+                    <b><i>Phase principale (encore)</i></b><br>
+                    Vous pouvez jouer un terrain si vous n'en avez pas encore joué.
+                    Vous pouvez lancer des sorts.<br><br>
+                    <b><i>Phase de fin</i></b><br>
+                    ∙ <i>Étape de fin</i><br>
+                    ∙ <i>Étape de nettoyage</i>—Les créatures blessées sur le champ de bataille
+                    guérissent.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

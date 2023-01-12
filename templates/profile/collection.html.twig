@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- contenu principal de la page -->
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+
+            <!-- titre de la page -->
+            <h2 class="section-title">Ma collection de cartes</h2>
+
+            <!-- variables pour l'affichage en ligne des cartes -->
+            {% set a = 5 %}
+            {% set i = 1 %}
+            {% set c = 6 %}
+
+            {% for coll in collectionCarte %}
+
+                <!-- une nouvelle "row" se forme en première instance et toutes les 5 cartes -->
+                {% if i == c or i == 1 %}
+                    <div class="row">
+                    <div class="product-padding-top">
+                    {% set c = a + 1 %}
+                {% endif %}
+
+                {% if coll.cartes is not empty %}
+                    {% for co in coll.cartes %}
+
+                        <!-- carte affichée -->
+                        <div class="col-1-5 {% if i == a or i == coll.cartes | length %}last{% endif %}">
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <!-- image -->
+                                    <img src="{{ asset('img/' ~ co.image)}}" alt="404 no image found">
+                                    <!-- menu hover pour diverses options -->
+                                    <div class="product-hover">
+                                        <a {% if app.user %} href="{{ url('removeCarteCollection', {id: co.id}) }}" {% else %} href="{{ path('login', ['login']) }}" {% endif %} class="add-to-cart-link">Retirer de votre collection</a>
+                                        <a {% if app.user %} href="{{ url('addListeDeSouhaits', {id: co.id}) }}" {% else %} href="{{ path('login', ['login']) }}" {% endif %} class="add-to-wishlist-link">Ajouter à votre liste de souhaits</a>
+                                        <a href="{{ url('detailDeCarte', {id: co.id}) }}" class="view-details-link">Voir les détails</a>
+                                    </div>
+                                </div>
+                                <!-- nom et prix -->
+                                <h2><a href="{{ url('detailDeCarte', {id: co.id}) }}">{{ co.nom }}</a></h2>
+                                <h3><a href="{{ url('detailDeCarte', {id: co.id}) }}">{{ co.prix | prix }}</a></h3>
+                            </div>
+                            <!-- si co est vide, affiche carte non trouvée -->
+                            {% if co is empty %}
+                                <div class="single-product">
+                                    <p>404 carte non trouvée</p>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- ferme la "row" si 5 cartes sont affichés ou si c'est la dernière carte -->
+                        {% if i == a or i == coll.cartes|length %}
+                            </div>
+                            </div><br>
+                            {% set a = a + 5 %}
+                        {% endif %}
+                        {% set i = i + 1 %}
+
+                    {% endfor %}
+
+                <!-- si il n'y a aucune carte, affiche qu'il n'y a pas de carte -->
+                {% else %}
+                    <div>Il n'y a aucune carte dans votre collection actuellement.</div>
+                    </div>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

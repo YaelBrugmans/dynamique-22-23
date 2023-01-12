@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- contenu principal statique de la page -->
+    <div class="maincontent-area">
+        <div class="container">
+
+            <!-- en cas d'erreur, affichage d'un message -->
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <!-- formulaire de création de carte -->
+            {{ form_start(carteForm) }}
+            <!-- nom -->
+            <div class="form-group">
+                {{ form_row(carteForm.nom, {attr: {class: 'form-control', 'autofocus': 'autofocus', 'autocomplete': 'nom'}}) }}
+            </div>
+            <!-- description -->
+            <div class="form-group">
+                {{ form_row(carteForm.description, {attr: {class: 'form-control', 'autocomplete': 'description'}}) }}
+            </div>
+            <!-- image -->
+            <div class="form-group">
+                {{ form_row(carteForm.image, {attr: {class: 'form-control', 'autocomplete': 'image'}}) }}
+            </div>
+            <!-- artiste -->
+            <div class="form-group">
+                {{ form_row(carteForm.artiste, {attr: {class: 'form-control', 'autocomplete': 'artiste'}}) }}
+            </div>
+            <!-- expansion -->
+            <div class="form-group">
+                {{ form_row(carteForm.expansion, {attr: {class: 'form-control', 'autocomplete': 'expansion'}}) }}
+            </div>
+            <!-- couleur -->
+            <div class="form-group">
+                {{ form_row(carteForm.couleur, {attr: {class: 'form-control', 'autocomplete': 'couleur'}}) }}
+            </div>
+            <!-- coût pour jouer la carte, lors d'une partie -->
+            <div class="form-group">
+                {{ form_row(carteForm.cout_carte, {attr: {class: 'form-control', 'autocomplete': 'cout_carte'}}) }}
+            </div>
+            <!-- valeur d'attaque et de défence -->
+            <div class="form-group">
+                {{ form_row(carteForm.atk_def, {attr: {class: 'form-control', 'autocomplete': 'atk_def'}}) }}
+            </div>
+            <!-- prix -->
+            <div class="form-group">
+                {{ form_row(carteForm.prix, {attr: {class: 'form-control', 'autocomplete': 'prix'}}) }}
+            </div>
+            <!-- submit -->
+                {{ form_row(carteForm.save, {attr: {class: 'form-control'}}) }}
+            {{ form_rest(carteForm) }}
+
+        </div>
+    </div>
+{% endblock %}

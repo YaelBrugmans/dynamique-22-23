@@ -1,0 +1,13 @@
+controllers:
+    resource: ../src/Controller/
+    type: annotation
+#    requirements:
+#        page: '.+'
+
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
+
+dashboard:
+    path: /admin/dashboard
+    controller: App\Controller\AdminDashboardController::index

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- contenu principal de la page -->
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+
+            <!-- formulaire d'inscription -->
+            <div class="login-page">
+                <div class="form-group">
+                    {{ form_start(registerForm, {attr: {class: 'register-form'}}) }}
+                    {{ form_rest(registerForm) }}
+                    <p><a href="{{ url('login') }}">Déjà un compte ? Cliquez ici.</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

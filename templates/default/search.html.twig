@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- contenu principal de la page -->
+    <div class="maincontent-area">
+        <div class="container">
+
+            <!-- formulaire de recherche -->
+            {{ form_start(searchForm) }}
+            <div class="form-group">
+                {{ form_row(searchForm.searchText, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(searchForm.maxPrice, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(searchForm.submit) }}
+            </div>
+            {{ form_end(searchForm) }}
+
+        </div>
+    </div>
+
+    <!-- section d'affichage des résultats de recherche -->
+    <section>
+        <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+
+            <!-- variables pour l'affichage des cartes -->
+            {% set i = 1 %}
+            {% set a = 5 %}
+
+            <!-- si le formulaire est envoyé, affiche les résultats -->
+            {% if submit == true %}
+
+                {% for result in results %}
+
+                    <!-- une nouvelle "row" se forme en première instance et toutes les 5 cartes -->
+                    {% if i is divisible by(6) or i == 1 %}
+                        <div class="row">
+                        <div class="product-padding-top">
+                    {% endif %}
+
+                    <!-- carte affichée -->
+                    <div class="col-1-5 {% if i == a or i == results|length %}last{% endif %}">
+                        <div class="single-product">
+                            <div class="product-f-image">
+                                <!-- image -->
+                                <img src="{{ asset('img/' ~ result.image)}}" alt="404 no image found">
+                                <!-- menu hover pour diverses options -->
+                                <div class="product-hover">
+                                    <a {% if app.user %} href="{{ url('addCollectionCarte', {id: result.id}) }}" {% else %} href="{{ path('login', ['login']) }}" {% endif %} class="add-to-cart-link">Ajouter à votre collection</a>
+                                    <a {% if app.user %} href="{{ url('addListeDeSouhaits', {id: result.id}) }}" {% else %} href="{{ path('login', ['login']) }}" {% endif %} class="add-to-wishlist-link">Ajouter à votre liste de souhaits</a>
+                                    <a href="{{ url('detailDeCarte', {id: result.id}) }}" class="view-details-link">Voir les détails</a>
+                                </div>
+                            </div>
+                            <!-- nom et prix -->
+                            <h2><a href="{{ url('detailDeCarte', {id: result.id}) }}">{{ result.nom }}</a></h2>
+                            <h3><a href="{{ url('detailDeCarte', {id: result.id}) }}">{{ result.prix | prix }}</a></h3>
+                        </div>
+                        <!-- si aucune carte trouvée, affiche un message -->
+                        {% if results is empty %}
+                            <div class="single-product">
+                                <p>404 carte non trouvée</p>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- ferme la "row" si 5 cartes sont affichés ou si c'est la dernière carte -->
+                    {% if i == a or i == results|length %}
+                        </div>
+                        </div><br>
+                        {% set a = a + 5 %}
+                    {% endif %}
+                    {% set i = i + 1 %}
+
+                {% endfor %}
+
+                <!-- si le formulaire est envoyé, mais qu'il n'y a pas de résulta, affiche un message -->
+                {% if results is empty %}
+                    Aucune carte ne correspond à votre recherche
+                {% endif %}
+
+                <!-- pagination de la recherche -->
+                {{ knp_pagination_render(pages) }}
+
+            {% endif %}
+
+        </div>
+        </div>
+    </section>
+
+{% endblock %}
+

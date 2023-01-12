@@ -1,0 +1,46 @@
+{% block nav %}
+    <div class="mainmenu-area">
+        <div class="container">
+
+            <div class="row">
+
+                <nav class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav">
+                        <li {% if app.request.get('_route') == 'index' %}class="active"{% endif %}><a href="{{ path('index') }}">Accueil</a></li>
+                        <li {% if app.request.get('_route') == 'commentJouer' or app.request.get('_route') == 'glossaire' %}class="active"{% endif %}><a href="{{ path('commentJouer') }}">Comment jouer</a></li>
+                        <li {% if app.request.get('_route') == 'aProposDeNous' %}class="active"{% endif %}><a href="{{ path('aProposDeNous') }}">A propos de nous</a></li>
+                        <li {% if app.request.get('_route') == 'search' %}class="active"{% endif %}><a href="{{ path('search') }}">Rechercher une carte</a></li>
+
+                        {% if app.user %}
+
+                            {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+                                <li {% if app.request.get('_route') == 'carteFormCreate' %}class="active"{% endif %}><a href="{{ path('carteFormCreate') }}">Créer une carte</a></li>
+                                <li {% if app.request.get('_route') == 'adminDashBoard' %}class="active"{% endif %}><a href="{{ path('adminDashboard') }}">Tableau de bord administrateur</a></li>
+                            {% endif %}
+
+                            <li class="scrolling-menu {% if app.request.get('_route') == 'compte' %}active{% endif %}"><a href="{{ path('compte') }}">Mon Compte</a>
+                                <ul class="under-scrolling-menu">
+                                    <li><a href="{{ path('collectionCarte') }}">Ma collection</a></li>
+                                    <li><a href="{{ path('decks') }}">Mes decks</a></li>
+                                    <li><a href="{{ path('listeDeSouhaits') }}">Liste des souhaits</a></li>
+                                </ul>
+                            </li>
+                            <li {% if app.request.get('_route') == 'logout' %}class="active"{% endif %}><a href="{{ path('logout') }}">Se déconnecter</a></li>
+
+                        {% else %}
+
+                            <li {% if app.request.get('_route') == 'register' %}class="active"{% endif %}><a href="{{ path('register', ['register']) }}">S'inscrire / </a></li>
+                            <li {% if app.request.get('_route') == 'login' %}class="active"{% endif %}><a href="{{ path('login', ['login']) }}">Se Connecter</a></li>
+
+                        {% endif %}
+
+                    </ul>
+
+                </nav>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
